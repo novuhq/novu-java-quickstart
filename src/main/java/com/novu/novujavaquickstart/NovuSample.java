@@ -2,11 +2,15 @@ package com.novu.novujavaquickstart;
 
 import co.novu.api.common.SubscriberRequest;
 import co.novu.api.events.requests.TriggerEventRequest;
+import co.novu.api.events.responses.TriggerEventResponse;
 import co.novu.api.subscribers.requests.UpdateSubscriberRequest;
 import co.novu.api.subscribers.responses.CreateSubscriberResponse;
 import co.novu.api.subscribers.responses.SingleSubscriberResponse;
 import co.novu.api.topics.requests.SubscriberAdditionRequest;
 import co.novu.api.topics.requests.TopicRequest;
+import co.novu.api.topics.responses.SubscriberAdditionResponse;
+import co.novu.api.topics.responses.SubscriberRemovalResponse;
+import co.novu.api.topics.responses.TopicResponse;
 import co.novu.common.base.Novu;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -60,7 +64,7 @@ public class NovuSample {
 
         }
 
-        public Object triggerNotification() {
+        public TriggerEventResponse triggerNotification() {
             String apiKey = "API_KEY";
             Novu novu = new Novu(apiKey);
 
@@ -85,7 +89,7 @@ public class NovuSample {
             return null;
         }
 
-        public Object createTopic() {
+        public TopicResponse createTopic() {
             String apiKey = "API_KEY";
             Novu novu = new Novu(apiKey);
 
@@ -101,13 +105,21 @@ public class NovuSample {
             return null;
         }
 
-        public Object addSubscriberToTopic() {
+        public SubscriberAdditionResponse addSubscriberToTopic() {
             String apiKey = "API_KEY";
             Novu novu = new Novu(apiKey);
 
+            SubscriberRequest subscriberRequest = new SubscriberRequest();
+            subscriberRequest.setEmail("email");
+            subscriberRequest.setFirstName("fName");
+            subscriberRequest.setLastName("lName");
+            subscriberRequest.setPhone("phone");
+            subscriberRequest.setAvatar("avatar");
+            subscriberRequest.setSubscriberId("subscriberId");
+
             String topicKey = "key";
             SubscriberAdditionRequest requestBody = new SubscriberAdditionRequest();
-            requestBody.setSubscribers(Collections.singletonList(new SubscriberRequest()));
+            requestBody.setSubscribers(Collections.singletonList(subscriberRequest));
 
             try {
                 return novu.addSubscriberToTopic(requestBody,topicKey);
@@ -118,13 +130,22 @@ public class NovuSample {
             return null;
         }
 
-        public Object removeSubscriberFromTopic() {
+        public SubscriberRemovalResponse removeSubscriberFromTopic() {
             String apiKey = "API_KEY";
             Novu novu = new Novu(apiKey);
 
+            SubscriberRequest subscriberRequest = new SubscriberRequest();
+            subscriberRequest.setEmail("email");
+            subscriberRequest.setFirstName("fName");
+            subscriberRequest.setLastName("lName");
+            subscriberRequest.setPhone("phone");
+            subscriberRequest.setAvatar("avatar");
+            subscriberRequest.setSubscriberId("subscriberId");
+
+
             String topicKey = "key";
             SubscriberAdditionRequest requestBody = new SubscriberAdditionRequest();
-            requestBody.setSubscribers(Collections.singletonList(new SubscriberRequest()));
+            requestBody.setSubscribers(Collections.singletonList(subscriberRequest));
 
             try {
                 return novu.removeSubscriberFromTopic(requestBody, topicKey);
