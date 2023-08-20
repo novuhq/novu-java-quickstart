@@ -30,7 +30,7 @@ public class NovuSample {
             try {
                 return novu.createSubscriber(subscriberRequest);
             }catch (Exception e){
-                log.error("Error Triggering Event", e);
+                log.error("Error Creating Subscriber", e);
             }
 
             return null;
@@ -73,6 +73,7 @@ public class NovuSample {
             TriggerEventRequest triggerEventRequest = new TriggerEventRequest();
                     triggerEventRequest.setName("name");
                     triggerEventRequest.setTo(subscriberRequest);
+                    triggerEventRequest.setPayload(Collections.singletonMap("customVariables", "Hello"));
 
 
             try {
