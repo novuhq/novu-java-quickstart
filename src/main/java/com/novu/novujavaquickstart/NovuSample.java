@@ -119,8 +119,7 @@ public class NovuSample {
 
             String topicKey = "key";
             SubscriberAdditionRequest requestBody = new SubscriberAdditionRequest();
-            requestBody.setSubscribers(Collections.singletonList(subscriberRequest));
-
+            requestBody.setSubscribers(Collections.singletonList("aSubscriberId"));
             try {
                 return novu.addSubscriberToTopic(requestBody,topicKey);
             }catch (Exception e){
@@ -145,8 +144,7 @@ public class NovuSample {
 
             String topicKey = "key";
             SubscriberAdditionRequest requestBody = new SubscriberAdditionRequest();
-            requestBody.setSubscribers(Collections.singletonList(subscriberRequest));
-
+            requestBody.setSubscribers(Collections.singletonList("aSubscriberId"));
             try {
                 return novu.removeSubscriberFromTopic(requestBody, topicKey);
             }catch (Exception e){
